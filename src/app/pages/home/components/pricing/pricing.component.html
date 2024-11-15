@@ -1,0 +1,11 @@
+<section class="pricing fade-in-up">
+  <h2>Membership Plans</h2>
+  <div class="pricing-card" *ngFor="let plan of pricingPlans">
+    <h3>{{ plan.name }}</h3>
+    <p>{{ plan.price | currency }}</p>
+    <ul>
+      <li *ngFor="let feature of plan.features">{{ feature }}</li>
+    </ul>
+    <button>Join Now</button>
+  </div>
+</section>

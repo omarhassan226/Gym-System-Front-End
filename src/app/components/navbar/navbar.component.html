@@ -1,0 +1,221 @@
+<nav
+  *ngIf="showNavbar"
+  class="bg-white border-gray-200 dark:bg-black position"
+  [@slideIn]
+>
+  <div class="flex flex-wrap items-center justify-between mx-auto px-16 small">
+    <a
+      href="https://linkedin.com/in/omar-hassan97/"
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+      target="_blank"
+    >
+      <img src="logo1.png" class="h-16" alt="Flowbite Logo" />
+      <span
+        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        >Gymenzo</span
+      >
+    </a>
+    <div
+      class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+    >
+      <button
+        type="button"
+        class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+        id="user-menu-button"
+        aria-expanded="isOpen"
+        aria-haspopup="true"
+        (click)="openModel()"
+      >
+        <span class="sr-only">Open user menu</span>
+        <img class="w-8 h-8 rounded-full" src="logo.png" alt="User photo" />
+      </button>
+      <div
+        [ngClass]="{ 'max-h-0': !isOpen, 'max-h-screen': isOpen }"
+        class="z-50 w-64 my-4 absolute top-10 right-0 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-black dark:divide-gray-600 overflow-hidden transition-max-height duration-300 ease-in-out"
+        id="user-dropdown"
+      >
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white">{{
+            userData.name
+          }}</span>
+          <span class="block text-sm text-gray-900 dark:text-white"
+            >01066035716</span
+          >
+          <a
+            href="mailto:oh.22697&commat;gmail.com"
+            class="block text-sm text-gray-500 truncate dark:text-gray-400"
+            aria-label="Email address"
+            >oh.22697&commat;gmail.com</a
+          >
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li
+            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          >
+            <img src="logo1.png" alt="" width="20%" />
+            <a
+              href="https://linkedin.com/in/omar-hassan97/"
+              target="_blank"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >LinkedIn</a
+            >
+          </li>
+          <li
+            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          >
+            <img src="logo.png" alt="" width="20%" />
+            <a
+              target="_blank"
+              href="https://github.com/omarhassan226"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Github</a
+            >
+          </li>
+          <li
+            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          >
+            <img src="logo1.png" alt="" width="20%" />
+            <a
+              target="_blank"
+              href="https://www.facebook.com/Omar3nber"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Facebook</a
+            >
+          </li>
+          <li
+            style="cursor: pointer"
+            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          >
+            <img src="logo.png" alt="" width="20%" />
+            <a
+              (click)="logout()"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+      <button
+        (click)="toggleMobileMenu()"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-user"
+        aria-expanded="isMobileMenuOpen"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="hidden md:flex md:order-1">
+      <ul
+        class="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-black dark:border-gray-700"
+      >
+        <li>
+          <a
+            href="#hero"
+            (click)="scrollToSection($event, 'hero')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="#about"
+            (click)="scrollToSection($event, 'about')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#projects"
+            (click)="scrollToSection($event, 'projects')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="#skills"
+            (click)="scrollToSection($event, 'skills')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Skills</a
+          >
+        </li>
+        <li>
+          <a
+            href="#contact"
+            (click)="scrollToSection($event, 'contact')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div
+      [ngClass]="{
+        'max-h-0': !isMobileMenuOpen,
+        'max-h-screen': isMobileMenuOpen
+      }"
+      class="overflow-hidden transition-max-height duration-400 ease-in-out w-full md:hidden"
+    >
+      <ul
+        class="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-black dark:border-gray-700"
+      >
+        <li>
+          <a
+            href="#hero"
+            (click)="scrollToSection($event, 'hero')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="#about"
+            (click)="scrollToSection($event, 'about')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#projects"
+            (click)="scrollToSection($event, 'projects')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="#skills"
+            (click)="scrollToSection($event, 'skills')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Skills</a
+          >
+        </li>
+        <li>
+          <a
+            href="#contact"
+            (click)="scrollToSection($event, 'contact')"
+            class="block py-2 px-3 navLinks rounded md:bg-transparent md:navLinks md:p-0 md:navLinks"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,39 @@
+.navLinks {
+  color: white;
+}
+
+.navLinks:hover {
+  color: #a1a1aa;
+}
+
+nav {
+  position: relative; /* or fixed */
+  z-index: 1000; /* ensure it's above other content */
+}
+
+.position {
+  position: sticky; /* Makes the navbar sticky */
+  top: 0; /* Sticks to the top of the viewport */
+  z-index: 1000; /* Ensures it stays above other content */
+}
+
+section {
+  scroll-margin-top: 80px; /* Adjust this based on your navbar height */
+}
+
+@media (max-width: 765px) {
+  .transition-max-height {
+    transition: max-height 0.3s ease-in-out;
+  }
+  .small {
+    padding: 20px 2rem;
+  }
+
+  .max-h-0 {
+    max-height: 0;
+  }
+
+  .max-h-screen {
+    max-height: 500px;
+  }
+}

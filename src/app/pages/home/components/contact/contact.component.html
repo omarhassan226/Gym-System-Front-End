@@ -1,0 +1,27 @@
+<section class="contact fade-in-up">
+  <h2>Contact Us</h2>
+  <p>Ready to start your fitness journey? Get in touch with us!</p>
+  <form (ngSubmit)="submitForm()">
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="form.name"
+      name="name"
+      required
+    />
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="form.email"
+      name="email"
+      required
+    />
+    <textarea
+      placeholder="Message"
+      [(ngModel)]="form.message"
+      name="message"
+      required
+    ></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>

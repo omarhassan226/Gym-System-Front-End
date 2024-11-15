@@ -1,0 +1,8 @@
+<p>testimonials works!</p>
+<section class="testimonials fade-in-left">
+  <h2>What Our Members Say</h2>
+  <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+    <p>"{{ testimonial.feedback }}"</p>
+    <p>- {{ testimonial.name }}</p>
+  </div>
+</section>
