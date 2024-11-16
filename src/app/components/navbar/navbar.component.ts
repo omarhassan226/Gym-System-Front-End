@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 export interface User {
   name: string;
@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isOpen = false;
   isMobileMenuOpen = false;
   showNavbar = false;
+  isLoggedIn = false;
   token = localStorage.getItem('token');
 
   userData: User = { name: '', email: '', phone: '' };
@@ -40,11 +41,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     setTimeout(() => {
-      if (this.token) {
-        this.getUser();
-      }
-      this.showNavbar = true;
+      this.checkLoginStatus();
+      this.subscription = this.authService.isAuth$.subscribe((isAuth) => {
+        this.isLoggedIn = isAuth;
+        if (this.isLoggedIn) {
+          this.showNavbar = true;
+          this.getUser();
+        }
+      });
     }, 0);
+  }
+
+  checkLoginStatus() {
+    const token = localStorage.getItem('token');
+    this.isLoggedIn = !!token;
   }
 
   ngOnDestroy() {
@@ -76,17 +86,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
+  // Fetch user data from the backend
   getUser() {
-    this.subscription = this.authService.getUser().subscribe({
-      next: (data: User) => {
-        this.userData = data;
-      },
-      error: (err) => {
-        console.error('Error getting user!', err);
-      },
-      complete: () => {
-        console.log('Subscription completed!');
-      },
-    });
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.subscription = this.authService.getUser().subscribe({
+        next: (data: User) => {
+          this.userData = data;
+        },
+        error: (err) => {
+          console.error('Error getting user!', err);
+        },
+      });
+    }
   }
 }

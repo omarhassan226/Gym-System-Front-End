@@ -12,7 +12,7 @@
           placeholder="Enter your full name"
         />
         <div
-          *ngIf="f['name'].touched && f['name'].invalid"
+          *ngIf="(f['name'].touched || f['name'].dirty) && f['name'].invalid"
           class="error-message"
         >
           Full Name is required.
@@ -29,10 +29,27 @@
           placeholder="Enter your email"
         />
         <div
-          *ngIf="f['email'].touched && f['email'].invalid"
+          *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].invalid"
           class="error-message"
         >
           Please enter a valid email address.
+        </div>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          formControlName="phone"
+          placeholder="Enter your phone number"
+        />
+        <div
+          *ngIf="(f['phone'].touched || f['phone'].dirty) && f['phone'].invalid"
+          class="error-message"
+        >
+          Please enter a valid 10-digit phone number.
         </div>
       </div>
 
@@ -54,7 +71,10 @@
           ></i>
         </div>
         <div
-          *ngIf="f['password'].touched && f['password'].invalid"
+          *ngIf="
+            (f['password'].touched || f['password'].dirty) &&
+            f['password'].invalid
+          "
           class="error-message"
         >
           Password is required and must be at least 6 characters.
@@ -79,33 +99,19 @@
           ></i>
         </div>
         <div
-          *ngIf="f['confirmPassword'].touched && f['confirmPassword'].invalid"
+          *ngIf="
+            (f['confirmPassword'].touched || f['confirmPassword'].dirty) &&
+            f['confirmPassword'].invalid
+          "
           class="error-message"
         >
           Confirm Password is required.
         </div>
         <div
-          *ngIf="f['confirmPassword'].touched && f['confirmPassword'].errors?.['mismatch']"
+          *ngIf="(f['confirmPassword'].touched || f['confirmPassword'].dirty) && f['confirmPassword'].errors?.['mismatch']"
           class="error-message"
         >
           Passwords do not match.
-        </div>
-      </div>
-
-      <!-- Phone Number -->
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input
-          type="tel"
-          id="phone"
-          formControlName="phone"
-          placeholder="Enter your phone number"
-        />
-        <div
-          *ngIf="f['phone'].touched && f['phone'].invalid"
-          class="error-message"
-        >
-          Please enter a valid 10-digit phone number.
         </div>
       </div>
 
@@ -116,7 +122,7 @@
           I agree to the <a href="#">Terms & Conditions</a>
         </label>
         <div
-          *ngIf="f['terms'].touched && f['terms'].invalid"
+          *ngIf="(f['terms'].touched || f['terms'].dirty) && f['terms'].invalid"
           class="error-message"
         >
           You must agree to the terms and conditions.

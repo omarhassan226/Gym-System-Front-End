@@ -1,13 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../components/navbar/navbar.component';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  private isAuthSubject = new BehaviorSubject<boolean>(false);
+  isAuth$ = this.isAuthSubject.asObservable();
+  token = localStorage.getItem('token');
+
+  constructor(private http: HttpClient) {
+    this.isAuthSubject.next(!!this.token);
+  }
 
   // token = localStorage.getItem('token');
   apiUrl = 'http://localhost:3000/api/';
@@ -17,14 +23,29 @@ export class AuthService {
   }
 
   login(data: any) {
-    return this.http.post(this.apiUrl + 'login', data);
+    return this.http.post<any>(this.apiUrl + 'login', data).pipe(
+      tap((response) => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          this.isAuthSubject.next(true);
+        }
+      })
+    );
   }
 
   signOut() {
+    this.isAuthSubject.next(false);
     return this.http.post(this.apiUrl + 'logout', null);
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(this.apiUrl + 'user');
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return throwError(() => new Error('No token found'));
+    }
+    console.log(token);
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<User>(this.apiUrl + 'user', { headers });
   }
 }

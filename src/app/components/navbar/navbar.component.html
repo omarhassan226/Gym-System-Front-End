@@ -1,5 +1,5 @@
 <nav
-  *ngIf="showNavbar"
+  *ngIf="showNavbar && isLoggedIn"
   class="bg-white border-gray-200 dark:bg-black position"
   [@slideIn]
 >
@@ -11,7 +11,8 @@
     >
       <img src="logo1.png" class="h-16" alt="Flowbite Logo" />
       <span
-        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        style="margin: 0px"
+        class="self-center m text-2xl font-semibold whitespace-nowrap dark:text-white"
         >Gymenzo</span
       >
     </a>
@@ -38,14 +39,14 @@
           <span class="block text-sm text-gray-900 dark:text-white">{{
             userData.name
           }}</span>
-          <span class="block text-sm text-gray-900 dark:text-white"
-            >01066035716</span
-          >
+          <span class="block text-sm text-gray-900 dark:text-white">{{
+            userData.phone
+          }}</span>
           <a
             href="mailto:oh.22697&commat;gmail.com"
             class="block text-sm text-gray-500 truncate dark:text-gray-400"
             aria-label="Email address"
-            >oh.22697&commat;gmail.com</a
+            >{{ userData.email }}</a
           >
         </div>
         <ul class="py-2" aria-labelledby="user-menu-button">

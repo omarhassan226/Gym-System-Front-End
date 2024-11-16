@@ -26,7 +26,7 @@ section {
     transition: max-height 0.3s ease-in-out;
   }
   .small {
-    padding: 20px 2rem;
+    padding: 0 2rem;
   }
 
   .max-h-0 {
